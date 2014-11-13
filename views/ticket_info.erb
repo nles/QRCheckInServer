@@ -1,0 +1,9 @@
+<div class='ticket-info'>
+  <div class="qr-container">
+    <img src="/get_qr_code_image/<%= @code %>" />
+  </div>
+  <div class="actions" style="text-align:center">
+    <a class="btn checkin-link" data-target="/qr_check_in/check_in/<%= @api_key %>/<%= @event_name %>/<%= @code %>">Check In</a>
+    <a class="btn checkout-link" data-target="/qr_check_in/check_out/<%= @api_key %>/<%= @event_name %>/<%= @code %>">Check Out</a>
+  </div>
+</div>

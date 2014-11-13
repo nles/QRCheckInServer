@@ -1,0 +1,57 @@
+<section>
+  <div class="page-header">
+    <h1>Orders and Tickets</h1>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <p>These are the orders and tickets currently uploaded (total of <%= @orders.length %> orders with <%= @ticket_count %> tickets).</p>
+      <div class="alert">
+        <strong>Note:</strong> Refresh this page to see the up to date checked-in status of each ticket.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="row">
+    <div class="span12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>OrderNO</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Tickets</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each_with_index do |order, idx| %>
+            <tr>
+              <td><%= idx + 1 %></td>
+              <td><%= order[:full_name] %></td>
+              <td><%= order[:full_address] %></td>
+              <td>
+                <ul class="tickets">
+                  <% order[:tickets].each_with_index do |ticket, jdx| %>
+                    <li id="ticketrow-<%= ticket[:ticket_code] %>">
+                      <a
+                        href="javascript:void(0)"
+                        id="ticketlink-<%= ticket[:ticket_code] %>"
+                        class="has-popover"
+                        data-poload="/get_ticket_info/<%= ticket[:ticket_code] %>">
+                        <span>ticket <%= jdx + 1 %> / <%= order[:tickets].length %></span>
+                      </a>
+                      <span class="checkin-label label label-success"<% if !ticket[:checked_in] %> style="display:none;"<% end %>>in</span>
+                      <span class="checkout-label label"<% if ticket[:checked_in] %> style="display:none;"<% end %>>out</span>
+                      <span title="<%= ticket[:ticket_code] %>">(<%= "#{ticket[:ticket_code][0..10]}..." %>)</span>
+                    </li>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

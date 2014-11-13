@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>QR Check In</title>
+<link href="bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="main.css" rel="stylesheet" type="text/css">
+<script src="jquery.min.js"></script>
+<script src="bootstrap/bootstrap.min.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Navi</a>
+    <ul class="nav">
+      <li<%= " class='active'" if @path_info == "/" %>><a href="/">Home</a></li>
+      <li<%= " class='active'" if @path_info == "/login" %>><a href="/login">App Login</a></li>
+      <li<%= " class='active'" if @path_info == "/orders" %>><a href="/orders">Orders & Tickets</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+<%= yield %>
+</div>
+
+</body>
+</html>
